@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 echo "starting build $(date +%Y%m%d%H%M%S)"
 echo
