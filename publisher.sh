@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+cd /opt/build/workspace/ || exit 1
 
 syft "$1" -o json > SBOM.json
 
