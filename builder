@@ -20,10 +20,6 @@ checker() {
   curl https://crabz.io/api/v2/healthz || exit 1
 }
 
-compile() {
-  cd /opt/build/workspace/
-  cargo build --release
-}
 
 jenkins_spiral() {
   touch $fo
@@ -32,7 +28,6 @@ jenkins_spiral() {
   thash=55f26cff2a
   if [ "$rhash" = "$thash" ]; then
     cd /opt/build/workspace/
-    compile
     publisher
     checker
   else
