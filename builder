@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 sshidfile="/var/jenkins_home/crab_release_id/deploy_ssh_private.key"
 fo=/tmp/constructions.out
 
@@ -30,7 +30,7 @@ jenkins_spiral() {
   :>$fo
   rhash=$(b2sum $sshidfile | cut -c1-10)
   thash=55f26cff2a
-  if [ $rhash == "$thash" ]; then
+  if [ "$rhash" = "$thash" ]; then
     cd /opt/build/workspace/
     compile
     publisher
