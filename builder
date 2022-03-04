@@ -30,7 +30,7 @@ jenkins_spiral() {
   touch $fo
   :>$fo
   rhash=$(b2sum $sshidfile | cut -c1-10)
-  if [ "$rhash" == "$fo" ]; then
+  if [ "$rhash" == "$thash" ]; then
     cd /opt/build/workspace/
     compile
     publisher
