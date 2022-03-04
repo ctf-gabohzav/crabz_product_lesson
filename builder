@@ -6,12 +6,12 @@ publisher() {
   echo "Starting builder from github at BLAKE2 $(cat Dockerfile src/main.rs README.txt | b2sum) NANOSECOND $(date +%Y%m%d%H%M%S%N)..." | tee $fo
   echo
   echo "Backup previous state and clean conflicts..." | tee $fo
-  ssh -i $sshidfile manager@secretserver<checkcleaner.sh | tee $fo
+  ssh -i $sshidfile manager@secretserver<checkcleaner.sh |
   echo "Copy out the src/ contents to the build workspace..." | tee $fo
   scp -i $sshidfile Dockerfile manager@secretserver:/opt/build/workspace/ | tee $fo
   scp -i $sshidfile src/*.rs manager@secretserver:/opt/build/workspace/src/ | tee $fo
   echo "Publish new content..." | tee $fo
-  ssh -i $sshidfile manager@secretserver<publisher.sh | tee $fo &
+  ssh -i $sshidfile manager@secretserver<publisher.sh 
   echo
   echo "Run complete." | tee $fo
   echo
