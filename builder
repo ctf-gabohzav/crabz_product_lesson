@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 sshidfile="/var/jenkins_home/crab_release_id/deploy_ssh_private.key"
 fo=/tmp/constructions.out
 
