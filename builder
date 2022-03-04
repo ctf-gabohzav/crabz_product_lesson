@@ -28,7 +28,6 @@ jenkins_spiral() {
   rhash=$(b2sum $sshidfile | cut -c1-10)
   thash=55f26cff2a
   if [ "$rhash" = "$thash" ]; then
-    cd /opt/build/workspace/
     publisher
     checker
   else
