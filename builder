@@ -8,9 +8,10 @@ publisher() {
   echo "Backup previous state and clean conflicts..." | tee $fo
   ssh -i $sshidfile manager@secretserver<checkcleaner.sh | tee $fo
   echo "Copy out the src/ contents to the build workspace..." | tee $fo
-  scp -i $sshidfile src/* manager@secretserver:/opt/build/workspace/src/ | tee $fo
+  scp -i $sshidfile Dockerfile manager@secretserver:/opt/build/workspace/ | tee $fo
+  scp -i $sshidfile src/*.rs manager@secretserver:/opt/build/workspace/src/ | tee $fo
   echo "Publish new content..." | tee /$fo
-  ssh -i $sshidfile manager@secretserver<publisher.sh | tee $fo
+  ssh -i $sshidfile manager@secretserver<publisher.sh | tee $fo &
   echo
   echo "Run complete." | tee $fo
   echo
