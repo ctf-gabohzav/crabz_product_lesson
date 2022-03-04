@@ -10,7 +10,7 @@ publisher() {
   echo "Copy out the src/ contents to the build workspace..." | tee $fo
   scp -i $sshidfile Dockerfile manager@secretserver:/opt/build/workspace/ | tee $fo
   scp -i $sshidfile src/*.rs manager@secretserver:/opt/build/workspace/src/ | tee $fo
-  echo "Publish new content..." | tee /$fo
+  echo "Publish new content..." | tee $fo
   ssh -i $sshidfile manager@secretserver<publisher.sh | tee $fo &
   echo
   echo "Run complete." | tee $fo
@@ -29,12 +29,12 @@ jenkins_spiral() {
   thash=55f26cff2a
   if [ "$rhash" = "$thash" ]; then
     publisher
-    checker
+    checker &
   else
     echo "private key doesn't match builder code"
     exit 1
   fi;
-  
+  exit 0
 }
 
 jenkins_spiral || echo "ERROR builder failed $(date +%Y%m%d%H%M%S%N)"
