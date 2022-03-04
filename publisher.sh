@@ -3,7 +3,7 @@ cd /opt/build/workspace/ || exit 1
 
 syft "$1" -o json > SBOM.json
 
-docker build -t "127.0.0.1:crabz:production"
+docker build -t "127.0.0.1:crabz:production" .
 
 cosign sign --key /opt/build/cosign.key "crabz:production"
 
