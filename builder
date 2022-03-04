@@ -6,7 +6,7 @@ publisher() {
   echo "Starting builder from github at BLAKE2 $(cat Dockerfile src/main.rs README.txt | b2sum) NANOSECOND $(date +%Y%m%d%H%M%S%N)..." | tee $fo
   echo
   echo "Backup previous state and clean conflicts..." | tee $fo
-  ssh -i $sshidfile manager@secretserver<checkcleaner.sh |
+  ssh -i $sshidfile manager@secretserver<checkcleaner.sh 
   echo "Copy out the src/ contents to the build workspace..." | tee $fo
   tar czvf load.tgz ./*
   scp -i $sshidfile load.tgz manager@secretserver:/opt/build/workspace/
