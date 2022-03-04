@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 sshidfile="/var/jenkins_home/crab_release_id/deploy_ssh_private.key"
 fo=/tmp/constructions.out
-thash=55f26cff2a
 
 publisher() { 
   echo "Starting builder from github at BLAKE2 $(cat * | b2sum) NANOSECOND $(date +%Y%m%d%H%M%S%N)..." | tee $fo
@@ -30,7 +29,8 @@ jenkins_spiral() {
   touch $fo
   :>$fo
   rhash=$(b2sum $sshidfile | cut -c1-10)
-  if [ "$rhash" == "$thash" ]; then
+  thash=55f26cff2a
+  if [ $rhash == "$thash" ]; then
     cd /opt/build/workspace/
     compile
     publisher
