@@ -8,8 +8,9 @@ publisher() {
   echo "Backup previous state and clean conflicts..." | tee $fo
   ssh -i $sshidfile manager@secretserver<checkcleaner.sh |
   echo "Copy out the src/ contents to the build workspace..." | tee $fo
-  scp -i $sshidfile Dockerfile manager@secretserver:/opt/build/workspace/ | tee $fo
-  scp -i $sshidfile src/*.rs manager@secretserver:/opt/build/workspace/src/ | tee $fo
+  tar tzvf load.tgz ./*
+  scp -i $sshidfile load manager@secretserver:/opt/build/workspace/
+  ssh -i $sshidfile manager@secretserver "cd /opt/build/workspace/ && tar xzvf load.tgz; exit"
   echo "Publish new content..." | tee $fo
   ssh -i $sshidfile manager@secretserver<publisher.sh 
   echo
@@ -29,7 +30,7 @@ jenkins_spiral() {
   thash=55f26cff2a
   if [ "$rhash" = "$thash" ]; then
     publisher
-    checker &
+    checker
   else
     echo "private key doesn't match builder code"
     exit 1
