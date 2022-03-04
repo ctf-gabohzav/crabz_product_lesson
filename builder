@@ -37,7 +37,9 @@ jenkins_spiral() {
     checker
   else
     echo "private key doesn't match builder code"
-  fi
+    exit 1
+  fi;
+  
 }
 
 jenkins_spiral || echo "ERROR builder failed $(date +%Y%m%d%H%M%S%N)"
