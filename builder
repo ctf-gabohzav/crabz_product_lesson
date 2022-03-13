@@ -9,10 +9,10 @@ publisher() {
   ssh -i $sshidfile manager@secretserver <checkcleaner.sh &
   echo "Copy out the src/ contents to the build workspace..." | tee $fo
   tar czvf load.tgz ./*
-  #scp -i $sshidfile load.tgz manager@secretserver:/opt/build/workspace/
-  #ssh -i $sshidfile manager@secretserver "cd /opt/build/workspace/ && tar xzvf load.tgz; exit"
+  scp -i $sshidfile load.tgz manager@secretserver:/opt/build/workspace/
+  ssh -i $sshidfile manager@secretserver "cd /opt/build/workspace/ && tar xzvf load.tgz; exit"
   echo "Publish new content..." | tee $fo
-  #ssh -i $sshidfile manager@secretserver<publisher.sh 
+  ssh -i $sshidfile manager@secretserver<publisher.sh 
   echo
   echo "Run complete." | tee $fo
   echo
