@@ -11,7 +11,7 @@ cosign attest -predicate SBOM.json -key /opt/build/cosign.key "crabz:production"
 
 docker push "127.0.0.1:crabz:production"
 
-docker export "127.0.0.1:crabz:production" > crabz_prod.tar
+docker save "127.0.0.1:crabz:production" > crabz_prod.tar
 
 b2sum crabz_prod.tar > checks.txt
 sha256sum crabz_prod.tar >> checks.txt
