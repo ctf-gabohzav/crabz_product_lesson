@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 cd /opt/build/workspace/ || exit 1
 
+cargo audit --json > cargo_audit.json
+
+cat cargo_audit.json
+
 syft "$1" -o json > SBOM.json
 
 docker build -t "127.0.0.1:crabz:production" .
